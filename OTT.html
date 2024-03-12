@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò chơi Oẳn Tù Tì</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('o.jpg'); /* Đường dẫn tới hình ảnh nền */
+            background-size: cover; /* Đảm bảo hình ảnh nền sẽ tự động điều chỉnh kích thước để phù hợp với kích thước trình duyệt */
+            background-position: center; /* Đặt hình ảnh ở giữa trang */
+            background-repeat: no-repeat; /* Ngăn chặn lặp lại hình ảnh */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #823212;
+        }
+        .choices {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .choice {
+            padding: 20px 30px;
+            margin: 0 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .choice:hover {
+            background-color: #000000;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #823212;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trò chơi Oẳn Tù Tì</h1>
+        
+        <div class="choices">
+            <button class="choice" onclick="play('Kéo')">Kéo</button>
+            <button class="choice" onclick="play('Búa')">Búa</button>
+            <button class="choice" onclick="play('Bao')">Bao</button>
+        </div>
+        
+        <div id="computer-choice"></div> <!-- Thẻ div cho máy chọn -->
+        <div id="result"></div> <!-- Thẻ div cho kết quả -->
+
+    </div>
+
+    <script>
+        function play(choice) {
+            var choices = ['Kéo', 'Búa', 'Bao'];
+            var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            var computerChoiceDiv = document.getElementById('computer-choice');
+            var resultDiv = document.getElementById('result');
+
+            // Hiển thị máy chọn và kết quả ra hai hàng khác nhau
+            computerChoiceDiv.innerHTML = " Máy chọn: " + computerChoice;
+
+            if (choice === computerChoice) {
+                resultDiv.innerHTML = "HÒA NHA MÀY";
+            } else if ((choice === 'Kéo' && computerChoice === 'Bao') ||
+                       (choice === 'Búa' && computerChoice === 'Kéo') ||
+                       (choice === 'Bao' && computerChoice === 'Búa')) {
+                resultDiv.innerHTML = "MÀY THẮNG";
+            } else {
+                resultDiv.innerHTML = "MÀY THUA";
+            }
+        }
+    </script>
+</body>
+
+</html>
+
